@@ -465,6 +465,8 @@ namespace WolvenKit
                         ;
 
                 createW2animsToolStripMenuItem.Enabled = !isToplevelDir;
+				//customScriptsToolStripMenuItem.Enabled = !isToplevelDir;
+                //customArdStableToolStripMenuItem.Enabled = !isToplevelDir;
                 exportToolStripMenuItem.Enabled = !isToplevelDir && (ext == "w3fac" || ext == "w2cutscene" || ext == "w2anims" || ext == "w2rig" || ext == "xbm"
                     || Enum.GetNames(typeof(EExportable)).Contains(ext));
 
@@ -717,6 +719,135 @@ namespace WolvenKit
             exportw2rigjsonToolStripMenuItem_Click(sender, e);
         }
         private void exportW3facposejsonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void customArdStableToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string scriptName = "ArdStable"; // save folder suffix
+            MockKernel.Get().Window.PauseMonitoring();
+            MainController.Get().ProjectStatus = EProjectStatus.Busy;
+
+            if (treeListView.SelectedObject is FileSystemInfo selectedobject)
+            {
+                var filename = selectedobject.FullName;
+                var fullpath = Path.Combine(ActiveMod.FileDirectory, filename);
+                //MainController.Get().Logger?.LogString($"selectedobject = {selectedobject.FullName}, ActiveMod = {ActiveMod.FileDirectory}, filename = {filename}, fullpath = {fullpath}");
+                List<string> cr2wPaths = new List<string>();
+
+                WolvenKit.Forms.CustomScripts CS = new WolvenKit.Forms.CustomScripts();
+                string rootDir = "";
+                if (Directory.Exists(fullpath))
+                {
+                    cr2wPaths = new List<string>(Directory.GetFiles(fullpath, "*.w2ent", SearchOption.AllDirectories));
+                    rootDir = selectedobject.FullName;
+                }
+                else if (File.Exists(fullpath))
+                {
+                    cr2wPaths.Add(fullpath);
+                }
+
+                string savePath;
+                for (int i = 0; i < cr2wPaths.Count; ++i)
+                {
+                    int percent = (int)((float)i / (float)cr2wPaths.Count * 100.0);
+                    MainController.Get().Logger?.LogProgress(percent, $"Processing: {cr2wPaths[i]}..");
+
+                    if (string.IsNullOrEmpty(rootDir))
+                    {
+
+                        savePath = $"{cr2wPaths[i].Substring(0, cr2wPaths[i].Length - 6)}_{scriptName}.w2ent";
+                    } else
+                    {
+                        savePath = $"{rootDir}_{scriptName}/{cr2wPaths[i].Substring(rootDir.Length + 1, cr2wPaths[i].Length - (rootDir.Length + 1))}";
+                        Directory.CreateDirectory( Path.GetDirectoryName(savePath) );
+                    }
+                    MainController.Get().Logger?.LogString($"savePath = {savePath}");
+
+                    CS.LoadCR2W(cr2wPaths[i]);
+                    CS.ArdStableHWScript();
+                    CS.SaveCR2W(savePath);
+                }
+            }
+
+            MockKernel.Get().Window.ResumeMonitoring();
+            MainController.Get().ProjectStatus = EProjectStatus.Ready;
+        }
+
+        private void customRemoveFurToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            string scriptName = "RemoveFur"; // save folder suffix
+            MockKernel.Get().Window.PauseMonitoring();
+            MainController.Get().ProjectStatus = EProjectStatus.Busy;
+
+            if (treeListView.SelectedObject is FileSystemInfo selectedobject)
+            {
+                var filename = selectedobject.FullName;
+                var fullpath = Path.Combine(ActiveMod.FileDirectory, filename);
+                List<string> cr2wPaths = new List<string>();
+
+                WolvenKit.Forms.CustomScripts CS = new WolvenKit.Forms.CustomScripts(false);
+                string rootDir = "";
+
+                StreamWriter logFile = new StreamWriter($"{ActiveMod.FileDirectory}\\Mod\\_LOG_{scriptName}.txt");
+                if (Directory.Exists(fullpath))
+                {
+                    cr2wPaths = new List<string>(Directory.GetFiles(fullpath, "*.w2ent", SearchOption.AllDirectories));
+                    rootDir = selectedobject.FullName;
+                }
+                else if (File.Exists(fullpath))
+                {
+                    cr2wPaths.Add(fullpath);
+                }
+                else
+                {
+                    return;
+                }
+
+                logFile.WriteLine("Processed files:");
+                string savePath;
+                int percent_old = -1;
+                Task.Run(() => //Run the method in another thread to prevent freezing UI
+                {
+                    for (int i = 0; i < cr2wPaths.Count; ++i)
+                    {
+                        int percent = (int)((float)i / (float)cr2wPaths.Count * 100.0);
+                        if (percent > percent_old)
+                        {
+                            MainController.Get().Logger?.LogString($"[{percent}%] Processing: {cr2wPaths[i]}..");
+                            MainController.Get().Logger?.LogProgress(percent);
+                            percent_old = percent;
+                        }
+
+                        CS.LoadCR2W(cr2wPaths[i]);
+                        if (CS.RemoveFurScript() > 0)
+                        {
+                            if (string.IsNullOrEmpty(rootDir))
+                            {
+                                savePath = $"{cr2wPaths[i].Substring(0, cr2wPaths[i].Length - 6)}_{scriptName}.w2ent";
+                            }
+                            else
+                            {
+                                savePath = $"{rootDir}_{scriptName}\\{cr2wPaths[i].Substring(rootDir.Length + 1, cr2wPaths[i].Length - (rootDir.Length + 1))}";
+                                Directory.CreateDirectory(Path.GetDirectoryName(savePath));
+                            }
+                            CS.SaveCR2W(savePath);
+                            logFile.WriteLine(savePath);
+                        }
+                    }
+                    logFile.Close();
+                    MockKernel.Get().Window.ResumeMonitoring();
+                    MainController.Get().ProjectStatus = EProjectStatus.Ready;
+                });
+            }
+        }
+
+        private void customScript3StripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void customScript4StripMenuItem_Click(object sender, EventArgs e)
         {
 
         }

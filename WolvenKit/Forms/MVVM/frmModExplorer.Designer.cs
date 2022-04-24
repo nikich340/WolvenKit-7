@@ -1,4 +1,4 @@
-﻿using System.ComponentModel;
+using System.ComponentModel;
 using System.IO;
 using System.Windows.Forms;
 
@@ -37,6 +37,11 @@ namespace WolvenKit
             this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.createW2animsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customArdStableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customRemoveFurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customScript3StripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customScript4StripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.customScriptsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportW2cutscenejsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportW2animsjsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.exportw2rigjsonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -80,6 +85,11 @@ namespace WolvenKit
             this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.createW2animsToolStripMenuItem,
             this.exportToolStripMenuItem,
+            this.customArdStableToolStripMenuItem,
+            this.customRemoveFurToolStripMenuItem,
+            this.customScript3StripMenuItem,
+            this.customScript4StripMenuItem,
+            this.customScriptsToolStripMenuItem,
             this.toolStripSeparator3,
             this.FileActionsToolStripMenuItem,
             this.toolStripSeparator5,
@@ -104,6 +114,48 @@ namespace WolvenKit
             this.createW2animsToolStripMenuItem.Size = new System.Drawing.Size(248, 26);
             this.createW2animsToolStripMenuItem.Text = "Create w2anims";
             this.createW2animsToolStripMenuItem.Click += new System.EventHandler(this.createW2animsToolStripMenuItem_Click);
+            // 
+            // customScript3StripMenuItem
+            // 
+            this.customScript3StripMenuItem.Name = "customScript3StripMenuItem";
+            this.customScript3StripMenuItem.Size = new System.Drawing.Size(248, 26);
+            this.customScript3StripMenuItem.Text = "customScript3StripMenuItem (unused)";
+            this.customScript3StripMenuItem.Click += new System.EventHandler(this.customScript3StripMenuItem_Click);
+            // 
+            // customScript4StripMenuItem
+            // 
+            this.customScript4StripMenuItem.Name = "customScript4StripMenuItem";
+            this.customScript4StripMenuItem.Size = new System.Drawing.Size(248, 26);
+            this.customScript4StripMenuItem.Text = "customScript4StripMenuItem (unused)";
+            this.customScript4StripMenuItem.Click += new System.EventHandler(this.customScript4StripMenuItem_Click);
+            // 
+            // customRemoveFurToolStripMenuItem
+            // 
+            this.customRemoveFurToolStripMenuItem.Name = "customRemoveFurToolStripMenuItem";
+            this.customRemoveFurToolStripMenuItem.Size = new System.Drawing.Size(248, 26);
+            this.customRemoveFurToolStripMenuItem.Text = "Remove furMesh path (.w2ent)";
+            this.customRemoveFurToolStripMenuItem.Click += new System.EventHandler(this.customRemoveFurToolStripMenuItem_Click);
+            // 
+            // customArdStableToolStripMenuItem
+            // 
+            this.customArdStableToolStripMenuItem.Name = "customArdStableToolStripMenuItem";
+            this.customArdStableToolStripMenuItem.Size = new System.Drawing.Size(248, 26);
+            this.customArdStableToolStripMenuItem.Text = "ArdStable fix (.w2ent)";
+            this.customArdStableToolStripMenuItem.Click += new System.EventHandler(this.customArdStableToolStripMenuItem_Click);
+            // 
+            // customScriptsToolStripMenuItem
+            // 
+            this.customScriptsToolStripMenuItem.DropDownItems.AddRange(
+                new System.Windows.Forms.ToolStripItem[] {
+                    this.customArdStableToolStripMenuItem,
+                    this.customRemoveFurToolStripMenuItem,
+                    this.customScript3StripMenuItem,
+                    this.customScript4StripMenuItem
+                }
+            );
+            this.customScriptsToolStripMenuItem.Name = "customScriptsToolStripMenuItem";
+            this.customScriptsToolStripMenuItem.Size = new System.Drawing.Size(248, 26);
+            this.customScriptsToolStripMenuItem.Text = "Custom scripts";
             // 
             // exportToolStripMenuItem
             // 
@@ -457,6 +509,11 @@ namespace WolvenKit
         private ToolStripSeparator toolStripSeparator4;
         private ToolStripMenuItem createW2animsToolStripMenuItem;
         private ToolStripMenuItem exportToolStripMenuItem;
+        private ToolStripMenuItem customArdStableToolStripMenuItem;
+        private ToolStripMenuItem customRemoveFurToolStripMenuItem;
+        private ToolStripMenuItem customScript3StripMenuItem;
+        private ToolStripMenuItem customScript4StripMenuItem;
+        private ToolStripMenuItem customScriptsToolStripMenuItem;
         private ToolStripMenuItem exportW2cutscenejsonToolStripMenuItem;
         private ToolStripMenuItem exportW2animsjsonToolStripMenuItem;
         private ToolStripMenuItem exportw2rigjsonToolStripMenuItem;
