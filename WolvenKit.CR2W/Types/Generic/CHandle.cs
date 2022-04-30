@@ -142,6 +142,7 @@ namespace WolvenKit.CR2W.Types
                     break;
                 case int o:
                     SetValueInternal(o);
+					SetIsSerialized();
                     break;
                 case IHandleAccessor cvar:
                     this.ChunkHandle = cvar.ChunkHandle;
@@ -150,6 +151,7 @@ namespace WolvenKit.CR2W.Types
                     this.Flags = cvar.Flags;
 
                     this.Reference = cvar.Reference;
+					SetIsSerialized();
                     break;
             }
 
