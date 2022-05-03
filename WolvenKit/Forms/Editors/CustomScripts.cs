@@ -67,7 +67,7 @@ namespace WolvenKit.Forms
                 dangleName = "CAnimDangleComponent #2";
                 furName = "CFurComponent #3";
             }
-            var mapChunks = current_cr2w.GetChunksMap();
+            var mapChunks = current_cr2w.GetChunksMapByPrefix("");
 
             /*foreach (var key_value in mapChunks)
             {
@@ -142,7 +142,7 @@ namespace WolvenKit.Forms
             {
                 current_cr2w = cr2w;
             }
-            var mapChunks = current_cr2w.GetChunksMap();
+            var mapChunks = current_cr2w.GetChunksMapByPrefix("");
 
             foreach (var name_chunk in mapChunks)
             {
