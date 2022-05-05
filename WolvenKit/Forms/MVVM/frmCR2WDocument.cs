@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -19,7 +19,6 @@ using WolvenKit.Common;
 using WolvenKit.Common.Model;
 using WolvenKit.Common.Services;
 using WolvenKit.CR2W;
-using WolvenKit.CR2W.SRT;
 using WolvenKit.CR2W.Types;
 using WolvenKit.Forms;
 using WolvenKit.Forms.Editors;
