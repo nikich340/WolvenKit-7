@@ -30,6 +30,7 @@ namespace WolvenKit.Forms.Editors
         {
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.toolStrip = new System.Windows.Forms.ToolStrip();
+            this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonSave = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonExport = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonImport = new System.Windows.Forms.ToolStripButton();
@@ -53,48 +54,59 @@ namespace WolvenKit.Forms.Editors
             // 
             this.toolStrip.ImageScalingSize = new System.Drawing.Size(20, 20);
             this.toolStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButton2,
             this.toolStripButtonSave,
             this.toolStripButtonExport,
             this.toolStripButtonImport,
             this.toolStripLabel1});
             this.toolStrip.Location = new System.Drawing.Point(0, 0);
             this.toolStrip.Name = "toolStrip";
-            this.toolStrip.Size = new System.Drawing.Size(1067, 27);
+            this.toolStrip.Size = new System.Drawing.Size(1067, 31);
             this.toolStrip.TabIndex = 2;
             this.toolStrip.Text = "toolStrip1";
+            // 
+            // toolStripButton2
+            // 
+            this.toolStripButton2.Image = global::WolvenKit.Properties.Resources.OpenFile_16x;
+            this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton2.Name = "toolStripButton2";
+            this.toolStripButton2.Size = new System.Drawing.Size(94, 28);
+            this.toolStripButton2.Text = "Load SRT";
+            this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // toolStripButtonSave
             // 
             this.toolStripButtonSave.Image = global::WolvenKit.Properties.Resources.Save_16x;
             this.toolStripButtonSave.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonSave.Name = "toolStripButtonSave";
-            this.toolStripButtonSave.Size = new System.Drawing.Size(64, 24);
-            this.toolStripButtonSave.Text = "Save";
+            this.toolStripButtonSave.Size = new System.Drawing.Size(92, 28);
+            this.toolStripButtonSave.Text = "Save SRT";
             this.toolStripButtonSave.Click += new System.EventHandler(this.toolStripButtonSave_Click);
             // 
             // toolStripButtonExport
             // 
-            this.toolStripButtonExport.Image = global::WolvenKit.Properties.Resources.json_export;
+            this.toolStripButtonExport.Image = global::WolvenKit.Properties.Resources.Output_16x;
             this.toolStripButtonExport.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonExport.Name = "toolStripButtonExport";
-            this.toolStripButtonExport.Size = new System.Drawing.Size(115, 24);
+            this.toolStripButtonExport.Size = new System.Drawing.Size(115, 28);
             this.toolStripButtonExport.Text = "Export JSON";
             this.toolStripButtonExport.Click += new System.EventHandler(this.toolStripButtonExport_Click);
             // 
             // toolStripButtonImport
             // 
-            this.toolStripButtonImport.Image = global::WolvenKit.Properties.Resources.json_import;
+            this.toolStripButtonImport.Image = global::WolvenKit.Properties.Resources.bug;
             this.toolStripButtonImport.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonImport.Name = "toolStripButtonImport";
-            this.toolStripButtonImport.Size = new System.Drawing.Size(117, 24);
+            this.toolStripButtonImport.Size = new System.Drawing.Size(117, 28);
             this.toolStripButtonImport.Text = "Import JSON";
             this.toolStripButtonImport.Click += new System.EventHandler(this.toolStripButtonImport_Click);
             // 
             // toolStripLabel1
             // 
+            this.toolStripLabel1.Image = global::WolvenKit.Properties.Resources.Test_16x;
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(111, 24);
-            this.toolStripLabel1.Text = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(152, 28);
+            this.toolStripLabel1.Text = "Compare .srt bytes";
             this.toolStripLabel1.Click += new System.EventHandler(this.toolStripLabel1_Click);
             // 
             // frmSrtEditor
@@ -122,5 +134,6 @@ namespace WolvenKit.Forms.Editors
         private System.Windows.Forms.ToolStripButton toolStripButtonExport;
         private System.Windows.Forms.ToolStripButton toolStripButtonImport;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripButton toolStripButton2;
     }
 }
