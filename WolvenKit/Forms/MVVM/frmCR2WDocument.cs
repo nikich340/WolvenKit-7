@@ -195,15 +195,18 @@ namespace WolvenKit
             var arg = e.Argument;
             if (arg is LoadFileArgs args)
             {
-
-                switch (vm.LoadFile(args.Filename, UIController.Get(), docLoggerService, args.Stream))
+                var res = vm.LoadFile(args.Filename, UIController.Get(), docLoggerService, args.Stream);
+                switch (res)
                 {
                     case EFileReadErrorCodes.NoError:
                         break;
                     case EFileReadErrorCodes.NoCr2w:
                     case EFileReadErrorCodes.UnsupportedVersion:
                     {
-                        this.Close();
+                        MessageBox.Show($"CR2W Load error: {res}", "ATTENTION!",
+                                 MessageBoxButtons.OK,
+                                 MessageBoxIcon.Warning);
+                        //this.Close();
                         //OpenDocuments.Remove(documentViewModel);
                         return null;
                     }
